@@ -1,0 +1,148 @@
+<div id="upload[id]" class="uploader">
+   <div class="file-list" id="file-list[id]" data-drag-placeholder="请拖拽文件到此处"></div>
+   <button type="button" class="btn btn-primary uploader-btn-browse"><i class="icon icon-cloud-upload"></i> 选择文件[msg]</button>
+</div>
+<input type="hidden" id="[id]" name="[id]" value="[value]" />
+<!--上传-->
+<script src="__LIB__/sortable/zui.sortable.min.js"></script>
+<link href="__LIB__/uploader/zui.uploader.min.css" rel="stylesheet">
+<script src="__LIB__/uploader/zui.uploader.min.js"></script>
+<script>
+    var uploadFileUrl="{:U('Upload/uploadfile')}";//图片上传操作方法
+    var delFileUrl="{:U('Upload/delfile')}";//图片删除操作方法
+    $('#upload[id]').uploader({
+       	limitFilesCount:[limit],   //上传个数限制
+        multi_selection:[limit]==1?false:true,//是否允许选择多个文件
+        autoUpload: true,            // 当选择文件后立即自动进行上传操作
+        staticFiles:[editvalue], //静态数据
+        deleteActionOnDone:delFile[id], //删除
+        responseHandler:responseBack[id], //服务器响应
+        fileFormater:showfileFormater[id], //格式化
+        url: uploadFileUrl+"?path=[path]&filetype=[filetype]&thumbw=[thumbw]&thumbh=[thumbh]", // 文件上传提交地址
+		chunk_size:'100mb',
+    });
+
+    /**
+     * 删除文件处理
+     * @param file
+     * @param doRemoveFile
+     */
+    function delFile[id](file, doRemoveFile){
+        //console.log(file);
+        var filename=file.remoteData?file.remoteData.SaveName:file.src?file.src:'';
+        if(filename!==''){
+           $.ajax({
+              url:delFileUrl+"?filename="+filename,
+              success:function(val){
+                  if(val){
+                      doRemoveFile();
+                      //移除隐藏域元素
+                      remove[id](filename);
+                  }
+                  return val?true:false;
+              }
+          });
+        }else{
+            var filename=file.src;
+            doRemoveFile();
+            remove[id](filename);
+        }
+    }
+
+    /**
+    * 移除隐藏域元素
+    */
+    function remove[id](filename){
+        var filesArr=new Array();
+        var oldstr=$('#[id]').val();
+        if(oldstr){
+            filesArr=$('#[id]').val().split(",");
+            var index = filesArr.indexOf(filename);
+            if (index > -1) {
+                filesArr.splice(index, 1);
+            }
+            $('#[id]').val(filesArr.join(','));
+        }
+    }
+
+    /**
+     * 上传回调处理
+     * @param responseObject
+     * @param file
+     * @returns {*}
+     */
+    function responseBack[id](responseObject, file){
+        var filesArr=new Array();
+        var oldstr=$('#[id]').val();
+        if(oldstr){
+            filesArr=$('#[id]').val().split(",");
+        }
+        var backJson=JSON.parse(responseObject.response);
+        if(!backJson.Success){
+            return backJson.Message;
+        }else{
+            //不返回任何内容，插入文件路径
+            filesArr.push(backJson.SaveName);
+            $('#[id]').val(filesArr.join(','));
+        }
+    }
+
+    /**
+     * 文件格式化显示
+     * @param $file
+     * @param file
+     * @param status
+     */
+    function showfileFormater[id]($file, file, status){
+        //console.log(file);
+        $file.find('.file-name').text(file.name);
+        $file.find('.file-size').text(renderSize(file.size).toUpperCase());
+        //静态赋值
+        if(file.src){
+            var rot=file.src.slice(0,4)=='http'?'':'__ROOT__';
+            $file.find('.file-icon').html('<div class="file-icon-image" style="background-image: url('+rot+file.src+')"></div>');
+            $file.find('.btn-download-file').attr('href',rot+file.src);
+            $file.attr('src',file.src);
+        }
+        //上传赋值
+        if(file.remoteData){
+            messagesstatus=file.remoteData.Message?file.remoteData.Message:'上传成功';
+            messagesdownload=file.remoteData.SaveName?file.remoteData.SaveName:'';
+            $file.find('.file-status').text(messagesstatus);
+            $file.find('.btn-download-file').attr('href','__ROOT__'+messagesdownload);
+            $('#'+file.id).attr('src',file.remoteData.SaveName);
+            $file.attr('src',messagesdownload);
+        }
+    }
+
+    /**
+     * 拖动排序
+     * @type {{selector: string, finish: finish}}
+     */
+    var options = {
+        selector: '.file',
+        order: function(e) {
+            var child = $("#upload[id]>.file-list").children();
+            var success_num = 0;
+            var str='';
+            var filesArr=new Array();
+            //console.log(str);
+            //console.log(child.size());
+            for(i=0;i<child.size()-1;i++){
+                var val = child.eq(i).attr("src");
+                console.log(val);
+                if(val){
+                    var orderid = i+1;
+                    str += val+',';
+                }else{
+                    str=$("#[id]").val();
+                }
+            }
+            //console.log(str);
+            if(str){str=str.substring(0,str.length-1);}
+            $("#[id]").val(str);
+            //console.log('排序完成：', e);
+        }
+    };
+    $('#file-list[id]').sortable(options);
+</script>

@@ -1,0 +1,45 @@
+<script src="__ROOT__{:$vars['layerjsUrl']}"></script>
+<script src="__ROOT__{:$vars['validatejsUrl']}"></script>
+<script>
+    // 手机号码验证
+    jQuery.validator.addMethod("isMobile", function(value, element) {
+        var length = value.length;
+        var mobile = /^(13[0-9]{9})|(18[0-9]{9})|(14[0-9]{9})|(17[0-9]{9})|(15[0-9]{9})$/;
+        return this.optional(element) || (length == 11 && mobile.test(value));
+    }, "请正确填写您的手机号码");
+    $().ready(function () {
+        $('#{:$vars['formId']}').validate({
+            //debug: true,
+            rules: {:json_encode($vars['rules'])},
+            messages: {:json_encode($vars['messages'])},
+            showErrors: function (errorMap, errorList) {
+                var msg = "";
+                $.each(errorList, function (i, v) {
+                    layer.tips(v.message, v.element, { time: 1000 });
+                    return false;
+                });
+            },
+            onkeyup:false,
+            onfocusout: false, /* 失去焦点时不验证 */
+            submitHandler: function () {
+                $('#{:$vars['formId']}').find("input[type='submit']").attr('autocomplete','off').prop('disabled',true);
+                $.ajax({
+                    type: "post",
+                    url : "{:U($vars['ajaxAction'])}",
+                    dataType:'json',
+                    data:$('#{:$vars['formId']}').serialize(),
+                    success: function(data){
+                        if(data['status']>0){
+                            layer.msg(data['info'], {icon: 6});
+                            {:$vars['successJs']}
+                        }else{
+                            layer.msg(data['info'], {icon: 5});
+							$('#{:$vars['formId']}').find("input[type='submit']").attr('autocomplete','').prop('disabled',false);
+                            {:$vars['errorJs']}
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

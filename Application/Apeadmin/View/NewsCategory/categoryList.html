@@ -1,0 +1,6 @@
+<volist name="categoryList" id="item">
+    <option value="{$item.category_id}">{:echo_nbsp($item['level'])}|-{$item.category_name}</option>
+    <notempty name="item['_']">
+        {:R($cmodelName.'/categoryList', array($item['_']))}
+    </notempty>
+</volist>

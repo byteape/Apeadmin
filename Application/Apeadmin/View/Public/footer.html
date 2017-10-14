@@ -1,0 +1,57 @@
+<!--chosen-->
+<link href="__LIB__/chosen/chosen.min.css" rel="stylesheet">
+<script src="__LIB__/chosen/chosen.min.js"></script>
+
+<!--模态对话框-->
+<link href="__LIB__/bootbox/bootbox.min.css" rel="stylesheet">
+<script src="__LIB__/bootbox/bootbox.min.js"></script>
+<!--表单处理-->
+<script src="__JS__/common.js"></script>
+<script src="__JS__/submit.js"></script>
+<script type="text/javascript">
+    var listPldelAction = "{:U($listPldelAction)}";
+    var root = "__ROOT__";
+    var pub = "__PUBLIC__";
+</script>
+<!--插件初始化-->
+<script>
+    $('select.chosen-select').chosen({
+        no_results_text: '没有找到',    // 当检索时没有找到匹配项时显示的提示文本
+        disable_search_threshold: 2, // 10 个以下的选择项则不显示检索框
+        search_contains: true         // 从任意位置开始检索
+    });
+    $(".form-datetime").datetimepicker({
+        weekStart: 1,
+        todayBtn: 1,
+        autoclose: 1,
+        todayHighlight: 1,
+        startView: 2,
+        forceParse: 0,
+        showMeridian: 1,
+        format: "yyyy-mm-dd hh:ii"
+    });
+
+
+
+
+</script>
+
+<!--样式覆盖-->
+<style>
+    .chosen-container-single .chosen-single {
+        /*height: 25px;
+        padding: 2px 5px;*/
+    }
+
+    .uploader {
+        margin-bottom: 0;
+    }
+
+    .file-list .file-wrapper > .actions {
+        width: 200px;
+    }
+
+    .col-sm-1 {
+        padding-right: 0px;
+    }
+</style>

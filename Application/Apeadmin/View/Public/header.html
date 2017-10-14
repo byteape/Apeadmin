@@ -1,0 +1,74 @@
+<div class="container-fluid col-xs-12">
+    <header class="header">
+        <div class="header-left">
+            <div class="sidebar-toggle">
+                <i class="icon icon-bars"></i>
+            </div>
+            <div class="logo">APE-
+                <span class="text-primary">admin</span>
+            </div>
+        </div>
+        <div class="header-user">
+            <div class="item dropdown">
+                <a href="{:U('Feedback/index')}">
+                    {:W('Admin/headerfeedback')}
+                    <i class="icon icon-envelope"></i>
+                </a>
+            </div>
+            <div class="item dropdown">
+                <span data-toggle="dropdown">
+                    <i class="icon icon-user"></i>
+                    <span>{:session('admin_name')}</span>
+                    <span class="caret"></span>
+                </span>
+                <ul class="dropdown-menu pull-right">
+                    <li>
+                        <a href="{:U('/')}" target="_blank">网站首页</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a onclick="delRuntime()">清除缓存</a>
+                    </li>
+                    <li>
+                        <a data-iframe="{:U('Admin/editpassword')}" data-toggle="modal" data-width="500px" data-height="400px">修改密码</a>
+                    </li>
+                    <if condition="in_array(session('admin_id'),array(1,2))">
+                        <li>
+                            <a href="{:U('Index/exportdatabase')}">数据备份</a>
+                        </li>
+                    </if>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="{:U('Login/logout')}">退出登录</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+</div>
+
+<script>
+    function delRuntime() {
+        $.ajax({
+            type: "post",
+            url: "{:U('Ajax/delRuntime')}",
+            dataType: 'json',
+            data: {},
+            success: function (data) {
+                if (data.status) {
+                    new $.zui.Messager('清除成功', {
+                        icon: 'check',
+                        type: 'success',
+                        time: 1000
+                    }).show();
+                } else {
+                    new $.zui.Messager('清除失败', {
+                        icon: 'times',
+                        type: 'warning',
+                        time: 1000
+                    }).show();
+                }
+            }
+        });
+    }
+</script>

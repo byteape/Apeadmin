@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <block name="h_meta">
+        <include file="Public/h_meta"/>
+    </block>
+    <block name="h_title">
+        <include file="Public/h_title"/>
+    </block>
+    <block name="h_link">
+        <include file="Public/h_link"/>
+    </block>
+</head>
+<body>
+<!-- 头部 -->
+<block name="header">
+    <include file="Public:header"/>
+</block>
+<!-- /头部 -->
+<!-- 侧边导航栏 -->
+<block name="sidebar">
+    <include file="Public:sidebar"/>
+</block>
+<!-- /侧边导航栏 -->
+<!-- 主体 -->
+<block name="body">这里在每个页面中必须继承！</block>
+<!-- /主体 -->
+<!-- 底部 -->
+<block name="footer">
+    <include file="Public:footer"/>
+</block>
+<!-- /底部 -->
+</body>
+</html>

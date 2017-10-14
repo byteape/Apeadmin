@@ -1,0 +1,32 @@
+<extend name="Public/common"/>
+<block name="header"></block>
+<block name="sidebar"></block>
+<block name="footer"></block>
+<block name="body">
+    <table class="table">
+        <tr>
+            <td width="100px">姓名：</td>
+            <td>{$content.realname}</td>
+        </tr>
+        <tr>
+            <td>电话：</td>
+            <td>{$content.phone}</td>
+        </tr>
+        <tr>
+            <td>邮箱：</td>
+            <td>{$content.email}</td>
+        </tr>
+        <tr>
+            <td>留言时间：</td>
+            <td>{$content.create_time|date='Y-m-d H:i:s',###}</td>
+        </tr>
+        <tr>
+            <td>留言IP：</td>
+            <td>{$content.create_ip}</td>
+        </tr>
+        <tr>
+            <td>留言详情：</td>
+            <td>{$content.detail}</td>
+        </tr>
+    </table>
+</block>

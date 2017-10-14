@@ -1,0 +1,23 @@
+<volist name="allList" id="item">
+    <tr>
+        <td class="text-center">
+            <input type="checkbox" name="selid[]" value="{$item.category_id}">
+        </td>
+        <td>{:echo_nbsp($item['level'])}|-{$item.category_name}</td>
+        <td class="text-center edit_input" attr_t="order_id" attr_id="{$item.category_id}">{$item.order_id}</td>
+        <td class="text-center edit_toggle" attr_t="is_show" attr_id="{$item.category_id}">{$item.is_show}</td>
+        <td class="text-center">
+            <a type="button" class="btn btn-sm btn-success" href="{:U('edit',array('category_id'=>$item['category_id']))}">
+                <i class="icon-edit"></i>
+                编辑
+            </a>
+            <a type="button" class="btn btn-sm btn-danger ajax-get" href="{:U('del',array('category_id'=>$item['category_id']))}">
+                <i class="icon-trash"></i>
+                删除
+            </a>
+        </td>
+    </tr>
+    <notempty name="item['_']">
+        {:R($cmodelName.'/allList', array($item['_']))}
+    </notempty>
+</volist>

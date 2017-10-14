@@ -1,0 +1,59 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <h2>快捷导航</h2>
+                    <hr>
+                    <ul class="index-list">
+                        <volist name="siderbarArray" id="item">
+                            <li>
+                                <a href="{$item.url}" style="color: #797979">
+                                    <i class="icon icon-{$item.icon} icon-3x"></i>
+                                    <div>{$item.title}</div>
+                                </a>
+                            </li>
+                        </volist>
+                    </ul>
+                </div>
+                <form id="webcontroll" onsubmit="return false">
+                    <div class="input-group panel-body">
+                        <span class="input-group-addon"><span style="margin-right: 10px;">关闭网站</span><input type="checkbox" name="open_web" value="1" {:$web_open['open_web']=='1'?'checked':''}></span>
+                        <input type="text" class="form-control" name="close_web_detail" value="{$web_open.close_web_detail}">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" onclick="closesubmit()">提交</button>
+                    </span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        function closesubmit() {
+            var isclose = $('#isclose').val();
+            var closemsg = $('#closemsg').val();
+            $.ajax({
+                type: "post",
+                url: "{:U('Ajax/webcontroll')}",
+                dataType: 'json',
+                data: $('#webcontroll').serialize(),
+                success: function (data) {
+                    if (data['status']) {
+                        new $.zui.Messager(data['info'], {
+                            icon: 'check',
+                            type: 'success',
+                            time: 1000
+                        }).show();
+                    } else {
+                        new $.zui.Messager(data['info'], {
+                            icon: 'times',
+                            type: 'warning',
+                            time: 1000
+                        }).show();
+                    }
+                }
+            });
+        }
+    </script>
+</block>

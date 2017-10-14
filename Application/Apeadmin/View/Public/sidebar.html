@@ -1,0 +1,32 @@
+<div class="sidebar-menu">
+    <nav class="menu nsider" data-ride="menu" style="width: 200px">
+        <ul id="treeMenu" class="tree tree-menu" data-ride="tree">
+            <volist name="siderbarArray" id="item">
+                <if condition="$item['show']">
+                    <li class="{:$item['terms'] ? 'active':''}">
+                        <a href="{$item.url}">
+                            <i class="icon icon-{$item.icon}"></i>
+                            {$item.title}
+                        </a>
+                        <notempty name="item['_']">
+                            <ul>
+                                <volist name="item['_']" id="iten">
+                                    <if condition="$iten['show']">
+                                        <li class="{:$iten['terms'] ? 'active':''}">
+                                            <a href="{$iten.url}">{$iten.title}</a>
+                                        </li>
+                                    </if>
+                                </volist>
+                            </ul>
+                        </notempty>
+                    </li>
+                </if>
+            </volist>
+        </ul>
+    </nav>
+</div>
+<script>
+    $(function () {
+        $('li.active').parents('li').addClass('open');
+    });
+</script>

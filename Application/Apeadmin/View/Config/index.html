@@ -1,0 +1,78 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <form class="form-horizontal post_form" action="" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <include file="Public/msg" title="title" msg="一般不超过80个字符"/>
+                                首页标题
+                            </label>
+                            <div class="col-sm-11">
+                                <input name="index_title" id="index_title" value="{$index_title}" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <include file="Public/msg" title="index_keywords" msg="多个关键词有英文输入法的逗号“,”分隔开来。一般不超过100个字符"/>
+                                首页关键词
+                            </label>
+                            <div class="col-sm-11">
+                                <input name="index_keywords" id="index_keywords" value="{$index_keywords}" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <include file="Public/msg" title="index_description" msg="一般不超过200个字符"/>
+                                首页描述
+                            </label>
+                            <div class="col-sm-11">
+                                <textarea rows="2" name="index_description" id="index_description" class="form-control">{$index_description}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <include file="Public/msg" title="logo" msg="100*100"/>
+                                网站logo
+                            </label>
+                            <div class="col-sm-11">
+                                <include file="Public/uploadfile" filetype="file" id="logo" value="{$logo}" editvalue="{:getEditFiles($logo)}" width="100" path="config" limit="1" thumbw="" thumbh="" msg=""/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <include file="Public/msg" title="copyright" msg="当需要对某文字添加链接时，点击标题文本，即可添加示例"/>
+                                <font onclick="addp()" style="cursor: pointer">版权信息</font>
+                            </label>
+                            <div class="col-sm-11">
+                                <input name="copyright" id="copyright" value="{$copyright}" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <script>
+                            function addp() {
+                                var str = $('#copyright').val();
+                                $('#copyright').val(str + '<a href="http://www.baidu.com" target="_blank">这里要链接的文字</a>\n');
+                            }
+                        </script>
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <include file="Public/msg" title="othercode" msg='可以用来放第三方流量统计代码、边栏分享代码等'/>
+                                第三方代码
+                            </label>
+                            <div class="col-sm-11">
+                                <textarea rows="4" name="othercode" id="othercode" class="form-control">{$othercode}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <button type="submit" class="btn btn-primary ajax-post" target-form="post_form">提交</button>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

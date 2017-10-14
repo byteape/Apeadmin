@@ -1,0 +1,54 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <form class="form-horizontal post_form" action="" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-1">标题</label>
+                            <div class="col-sm-11">
+                                <input name="title" id="title" type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">详情内容</label>
+                            <div class="col-sm-11">
+                                <include file="Public/kindeditor" id="detail" value="" thumbw="1024" thumbh="1024"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">是否显示</label>
+                            <div class="col-sm-11">
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="is_show" value="1" checked>
+                                        是
+                                    </label>
+                                    <label>
+                                        <input type="radio" name="is_show" value="0">
+                                        否
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-1">顺序编号</label>
+                            <div class="col-sm-11">
+                                <input name="order_id" id="order_id" type="number" class="form-control" value="0">
+                            </div>
+                        </div>
+
+                        {:W('Admin/seoMeta',array('model'=>$model))}
+
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <button type="submit" class="btn btn-primary ajax-post" target-form="post_form">提交</button>
+                            </label>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

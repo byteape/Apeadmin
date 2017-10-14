@@ -1,0 +1,94 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <a class="btn btn-primary" href="{:U('add')}">添加信息</a>
+                    </div>
+                    <form action="{:U('index')}" method="get">
+                        <div class="search">
+                            <input type="text" name="title" class="form-control text" placeholder="标题" value="{$conditions.title}" style="width:150px;">
+                            <div class="btn-group">
+                                <select name="category_id" id="category_id" data-placeholder="请选择类别" class="chosen-select form-control" tabindex="2" style="min-width:110px;">
+                                    <option value="">所属类别</option>
+                                    {:R($cmodelName.'/categoryList', array($categoryList))}
+                                </select>
+                            </div>
+                            <script>$('#category_id').val('{$conditions.category_id}')</script>
+                            <div class="btn-group">
+                                <select name="is_show" id="is_show" class="form-control selectstyle">
+                                    <option value="">显示</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </div>
+                            <script>$('#is_show').val('{$conditions.is_show}')</script>
+                            <input type="text" name="create_time[]" class="form-control text form-datetime" placeholder="开始时间" value="{$conditions['create_time'][0]}" style="width:115px;" readonly="readonly">
+                            <input type="text" name="create_time[]" class="form-control text form-datetime" placeholder="结束时间" value="{$conditions['create_time'][1]}" style="width:115px;" readonly="readonly">
+                            <button type="submit" class="btn btn-primary-outline">
+                                <i class="icon-search"></i>
+                                &nbsp;查询
+                            </button>
+                        </div>
+                    </form>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th width="40" class="text-center">
+                                <input type="checkbox" class="selectAllCheckbox">
+                            </th>
+                            <th width="50" class="text-center">图片</th>
+                            <th>信息名称</th>
+                            <th width="200" class="text-center">信息类别</th>
+                            <th width="50" class="text-center">显示</th>
+                            <th width="150" class="text-center">更新日期</th>
+                            <th width="140" class="text-center sort-disabled" data-type="string">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" name="selid[]" value="{$item.id}">
+                                </td>
+                                <td>
+                                    <img src="__ROOT__{$item.picture}" class="img-thumbnail" href="__ROOT__{$item.picture}" data-toggle="lightbox" width="50px"/>
+                                </td>
+                                <td>{$item.title}</td>
+                                <td>{:D('NewsCategory')->getFieldByCategoryId($item['category_id'],'category_name')}</td>
+                                <td class="text-center edit_toggle" attr_t="is_show" attr_id="{$item.id}">{$item.is_show}</td>
+                                <td class="text-center">{$item.create_time|date='Y-m-d H:i:s',###}</td>
+                                <td class="text-center">
+                                    <a type="button" class="btn btn-sm btn-success" href="{:U('edit',array('id'=>$item['id']))}">
+                                        <i class="icon-edit"></i>
+                                        编辑
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-danger ajax-get" href="{:U('del',array('id'=>$item['id']))}">
+                                        <i class="icon-trash"></i>
+                                        删除
+                                    </a>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8">
+                                <button type="button" class="btn btn-danger ajax-get" onclick="confirmDel(prefun,delsel)">
+                                    <i class="icon-trash"></i>
+                                    删除
+                                </button>
+                                <div class="pull-right">
+                                    {$page}
+                                </div>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

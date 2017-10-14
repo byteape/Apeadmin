@@ -1,0 +1,1 @@
+<?php return array('DETAIL_PIC_ROOT' => '/apeadmin'); ?>

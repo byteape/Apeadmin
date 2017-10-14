@@ -1,0 +1,73 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <a class="btn btn-primary" href="{:U('add')}">添加管理组</a>
+                    </div>
+                    <form action="{:U('index')}" method="get">
+                        <div class="search">
+                            <input type="text" name="group_name" class="form-control text" placeholder="管理组名称" value="{$conditions.group_name}" style="width:150px;">
+                            <button type="submit" class="btn btn-primary-outline">
+                                <i class="icon-search"></i>
+                                &nbsp;查询
+                            </button>
+                        </div>
+                    </form>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th width="40" class="text-center">
+                                <input type="checkbox" class="selectAllCheckbox">
+                            </th>
+                            <th>管理组名称</th>
+                            <th>备注</th>
+                            <th width="200" class="text-center sort-disabled" data-type="string">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" name="selid[]" value="{$item.id}">
+                                </td>
+                                <td>{$item.group_name}</td>
+                                <td>{$item.remark}</td>
+                                <td class="text-center">
+                                    <a type="button" class="btn btn-sm btn-info" data-iframe="{:U('AdminGroup/accessManage',array('group_id'=>$item['group_id']))}" data-toggle="modal" data-width="50%" data-heigth="800px">
+                                        <i class="icon-key"></i>
+                                        权限
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-success" href="{:U('edit',array('group_id'=>$item['group_id']))}">
+                                        <i class="icon-edit"></i>
+                                        编辑
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-danger ajax-get" href="{:U('del',array('group_id'=>$item['group_id']))}">
+                                        <i class="icon-trash"></i>
+                                        删除
+                                    </a>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8">
+                                <button type="button" class="btn btn-danger" onclick="confirmDel(prefun,delsel)">
+                                    <i class="icon-trash"></i>
+                                    删除
+                                </button>
+                                <div class="pull-right">
+                                    {$page}
+                                </div>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

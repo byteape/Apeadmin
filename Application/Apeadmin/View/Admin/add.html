@@ -1,0 +1,41 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <form class="form-horizontal post_form" action="" method="post">
+                        <div class="form-group"
+                        {:!C('POWER_ROUTE')?'style="display:none"':''}>
+                        <label class="col-sm-1">管理组别</label>
+                        <div class="col-sm-11">
+                            <select name="group_id" id="group_id" data-placeholder="选择一个组别..." class="chosen-select form-control" tabindex="2">
+                                <volist name="groupList" id="item">
+                                    <option value="{$item.group_id}">{$item.group_name}</option>
+                                </volist>
+                            </select>
+                        </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1">用户名称</label>
+                    <div class="col-sm-11">
+                        <input name="admin_name" id="admin_name" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1">登录密码</label>
+                    <div class="col-sm-11">
+                        <input name="password" id="password" type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-1">
+                        <button type="submit" class="btn btn-primary ajax-post" target-form="post_form">提交</button>
+                    </label>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+</block>

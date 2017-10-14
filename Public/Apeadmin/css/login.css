@@ -1,0 +1,179 @@
+﻿@charset "UTF-8";
+/*整站样式*/
+html,body,dl,dd,img,form,div,ul,ol,li,h1,h2,h3,h4,h5,h6,p,button{margin:0;padding:0; border:0;}
+body{font-size: 12px;font-family:"Microsoft YaHei",Arial;}
+input,textarea,button{padding: 0;font-family:"Microsoft YaHei",Arial;}
+h1,h2,h3,h4,h5,h6{font-weight: normal;}
+ul,ol,li{ list-style-type:none;}
+img{border:0;vertical-align:middle;}
+select,input,textarea,button{vertical-align:middle;outline: none;}
+table{border-collapse:collapse;border-spacing:0}
+tr{margin:0;padding:0;}
+td{margin:0;padding:0;}
+iframe{border:none;}
+a:link{text-decoration:none;}
+a:visited{text-decoration:none;}
+a:hover{text-decoration:none;}
+a:active{text-decoration:none;}
+.hidden{display:none;visibility:hidden;}
+.wrap{border: 0;padding:0;width:1150px;margin:0 auto;*zoom:1;}
+.wrap:after{clear: both;content:"";display: table;}
+.clear{clear:both;font-size:0;line-height:0;height:0;visibility:hidden;}
+.fix{*zoom:1;}
+.fix:after{clear: both;content:"";display: table;}
+.fl{float: left;}
+.fr{float: right;}
+.tl{text-align: left;}
+.tc{text-align: center;}
+.tr{text-align: right;}
+
+
+.login {
+    width:100%;
+    height:100vh;
+    background:url(../images/bg.jpg) center center no-repeat;
+}
+.login-box {
+    width:920px;
+    margin:auto;
+    padding-top:10%;
+}
+.login-title {
+    width:100%;
+    height:60px;
+    background:url(../images/tp2.png) left center no-repeat;
+    box-sizing:border-box;
+    padding-left:236px;
+    display:table;
+    margin-bottom:23px;
+}
+.login-title span {
+    height:45px;
+    border-left:1px solid #fff;
+    display:block;
+    line-height:45px;
+    margin-top:7px;
+    font-size:40px;
+    color:#fff;
+    padding-left:17px;
+}
+.login-left {
+    width:500px;
+    float:left;
+}
+
+.login-right {
+    width:420px;
+    float:right;
+    background:rgba(255,255,255,0.5);
+    box-sizing:border-box;
+    padding:53px 36px 45px 34px;
+}
+.login-right-yhm {
+    width:100%;
+    height:50px;
+    border:2px solid #c2e9ff;
+    padding-left:20px;
+    box-sizing:border-box;
+    margin-bottom:12px;
+    background:#fff url(../images/tb1.png) 311px center no-repeat;
+}
+.login-right-yhm:focus,.login-right-mm:focus {
+    border:2px solid #279de1;
+}
+.login-right-mm {
+    width:100%;
+    height:50px;
+    border:2px solid #c2e9ff;
+    padding-left:20px;
+    box-sizing:border-box;
+    margin-bottom:12px;
+    background:#fff url(../images/tb2.png) 311px center no-repeat;
+}
+.login-right-yzm {
+    width:100%;
+    height:50px;
+}
+.login-right-yzmtx {
+    width:180px;
+    height:50px;
+    box-sizing:border-box;
+    border:1px solid #f0f0f0;
+    float:left;
+    padding-left:21px;
+}
+.login-right-yzmtx:focus {
+    border:1px solid #279de1;
+}
+.login-right-yzmtp {
+    width:160px;
+    height:50px;
+    box-sizing:border-box;
+    border:1px solid #f0f0f0;
+    float:right;
+}
+.login-right-checkbox {
+    width:100%;
+    font-size:12px;
+    color:#666;
+    line-height:28px;
+    margin-top:11px;
+    margin-bottom:14px;
+}
+/*---checkbox--*/
+.chk_1{
+    display: none;
+}
+.chk_1 + label {
+	border:1px solid #c2e9ff;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+	width:15px;
+    height:15px;
+	display: block;
+	position: relative;
+    float:left;
+    margin-top:6px;
+    margin-right:5px;
+    background:#fff;
+}
+.chk_1 + label:active {
+	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.chk_1:checked + label {
+	border:1px solid #279de1;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05), inset 15px 10px -12px rgba(255, 255, 255, 0.1);
+	color: #243441;
+}
+
+.chk_1:checked + label:after {
+	content: '\2714';
+	position: absolute;
+	top: -6px;
+	left: 2px;
+	color: #2ea3e6;
+	width: 12px;
+    height:12px;
+	text-align: center;
+	vertical-align:top;
+}
+
+.login-right-checkbox span {
+    color:#e93030;
+}
+.login-button {
+    width:100%;
+    height:50px;
+    border:none;
+    font-size:16px;
+    color:#fff;
+    background-image: linear-gradient(to bottom,#41b4f7 100%,#279ada 100%);
+    border-radius:5px;
+}
+
+
+
+
+
+
+

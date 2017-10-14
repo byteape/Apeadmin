@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8"/>
+    <title>深圳方维网络管理系统</title>
+    <meta name="author" content="DeathGhost"/>
+    <meta name="author" content="深圳方维网络科技有限公司  http://www.szfangwei.cn">
+    <link rel="stylesheet" type="text/css" href="__CSS__/login.css"/>
+    <link rel="icon" href="__IMG__/favicon.ico" type="image/x-icon"/>
+    <link href="__CSS__/zui.min.css" rel="stylesheet">
+    <script src="__JS__/jquery-1.11.1.min.js"></script>
+    <script src="__JS__/jquery.validate-1.13.1.js"></script>
+    <script src="__JS__/zui.min.js"></script>
+</head>
+<body>
+<form id="Login">
+    <div class="login">
+        <div class="login-box fix">
+            <div class="login-title">
+                <span>方维后台管理系统</span>
+            </div>
+            <div class="login-left">
+                <img src="__IMG__/tp3.png">
+            </div>
+            <div class="login-right">
+                <input type="text" class="login-right-yhm" placeholder="管理员帐号" name="admin_name">
+                <input type="password" class="login-right-mm" placeholder="管理员密码" name="password">
+                <div class="login-right-yzm fix">
+                    <input type="text" class="login-right-yzmtx" placeholder="输入验证码" name="code">
+                    <div class="login-right-yzmtp">
+                        <img src="{:U('Login/verify')}" style="cursor:pointer;" onClick="this.src=this.src+'?'+Math.random()" id="verify">
+                    </div>
+                </div>
+                <div class="login-right-checkbox">
+                    <input name="remember" value="1" type="checkbox" id="checkbox_a2" class="chk_1">
+                    <label for="checkbox_a2"></label>
+                    一周内自动登录
+                    <span>建议在网吧或公共电脑上取消保持登录选项。</span>
+                </div>
+                <input type="submit" value="登录" class="login-button">
+            </div>
+        </div>
+    </div>
+</form>
+<?php $LoginForm->run();?>
+</body>
+</html>

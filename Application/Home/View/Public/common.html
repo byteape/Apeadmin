@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<block name="php"></block>
+<head>
+    <block name="h_meta">
+        <include file="Public/h_meta"/>
+    </block>
+    <block name="h_title">
+        <include file="Public/h_title"/>
+    </block>
+    <block name="h_link">
+        <include file="Public/h_link"/>
+    </block>
+</head>
+<body>
+<!--Header-->
+<block name="header">
+    <include file="Public:header"/>
+</block>
+<!--/Header-->
+<!--Body-->
+<block name="body">这是必须继承</block>
+<!--/Body-->
+<!--Footer-->
+<block name="footer">
+    <include file="Public:footer"/>
+</block>
+<!--/Footer-->
+<!--Others-->
+<block name="otherjs"></block>
+<!--/Others-->
+</body>
+</html>

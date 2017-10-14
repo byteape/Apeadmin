@@ -1,0 +1,186 @@
+@media (max-width: 768px) {
+    .header {
+        position: absolute;
+    }
+    /*sidebar*/
+    .sidebar {
+        height: auto !important;
+        overflow: hidden;
+        position: absolute;
+        width: 100% !important;
+        padding-bottom: 0 !important;
+        z-index: 1001;
+    }
+    /* body container */
+    .main-content {
+        margin: 0px!important;
+        position: none !important;
+    }
+    /* sidebar */
+    .sidebar {
+        margin: 0px !important;
+    }
+    .header-search{
+    	display: none;
+    }
+}
+body{
+	color: #797979;
+    background: #f7f7f7;
+}
+a,a:hover, a:focus {
+    text-decoration: none;
+    outline: none;
+}
+ul,li{
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+.header{
+	min-height: 60px;
+    padding: 0 15px;
+    background: #fff;
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+}
+.header-left{
+	float: left;
+	width: 180px;
+}
+.sidebar-toggle{
+	float: left;
+    padding-right: 15px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+.sidebar-toggle .icon{
+    font-size: 20px;
+}
+
+.logo {
+    font-size: 21px;
+    color: #2e2e2e;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+.header-user{
+	float: right;
+}
+.header-user .item{
+	padding:15px 0;
+	float: left;
+	margin-left: 30px;
+	line-height: 30px;
+    cursor: pointer;
+}
+.header-user .item .icon{
+	font-size: 18px;
+	color: #999;
+}
+.header-user .item .badge{
+	border-radius: 50%;
+	position: absolute;
+	top: 15px;
+	right: -6px;
+	width: 8px;
+	height: 8px;
+}
+
+.header-user .avatar{
+	width: 30px;
+	height: 30px;
+}
+
+.main-content{
+    padding-top: 50px;
+    margin-left: 180px;
+}
+.wrapper{
+    padding: 15px;
+}
+.topbar{
+    height: 43px;
+    background: #fff;
+    border-bottom: solid 1px #e2e2e2;
+}
+
+.search{
+    color: #333;
+    padding-bottom: 15px;
+}
+input.text{
+    height: 32px;
+    width: 400px;
+    line-height: 30px;
+    border: solid 1px #ccc;
+    text-shadow: 0 1px 0 #fff;
+    color: #333;
+    padding-left: 4px;
+    overflow: hidden;
+    outline: none;
+	display:inline;
+}
+
+.btn-primary-outline {
+    padding: 4px 6px;
+  color: #43a047;
+  background-color: transparent;
+  border-color: #43a047;
+}
+.btn-primary-outline:hover{
+    outline: none;
+    border-color: #43a047;
+    text-shadow: none;
+    color: #fff;
+    background: #43a047;
+}
+.table .pager{
+    margin: 0;
+}
+
+
+
+
+.selectstyle{
+	padding: 0px 5px;
+    height: 32px;
+}
+
+
+
+.nsider{
+	    width: 180px;
+    height: 100%;
+    overflow-y: scroll;
+    position: fixed;
+margin-top:65px;
+    padding-bottom: 15px;
+}
+
+/*自已定义*/
+
+.index-list li{
+	float:left;
+	margin-left: 30px;
+	width:90px;
+    height:90px;
+	background:#f7f7f7;
+	text-align:center;
+	padding-top:1.5%;
+	margin-top:10px;
+}
+
+.index-list i{
+	color:grey;
+}
+.index-list span{
+	text-align:center;
+}
+.index-list li div{
+	position:relative;
+	text-align:center;
+}

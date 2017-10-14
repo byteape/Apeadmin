@@ -1,0 +1,76 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="pull-right">
+                        <a class="btn btn-primary" href="{:U('add')}">节点管理</a>
+                    </div>
+                    <form action="{:U('index')}" method="get">
+                        <div class="search">
+                            <input type="text" name="title" class="form-control text" placeholder="节点名称" value="{$conditions.title}" style="width:150px;">
+                            <button type="submit" class="btn btn-primary-outline">
+                                <i class="icon-search"></i>
+                                &nbsp;查询
+                            </button>
+                        </div>
+                    </form>
+                    <table class="table table-bordered table-hover table-striped">
+                        <thead>
+                        <tr>
+                            <th width="40" class="text-center">
+                                <input type="checkbox" class="selectAllCheckbox">
+                            </th>
+                            <th>节点名称</th>
+                            <th width="200" class="text-center">节点标识</th>
+                            <th width="60" class="text-center">主页面</th>
+                            <th width="140" class="text-center sort-disabled" data-type="string">操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="list" id="item">
+                            <tr>
+                                <td class="text-center">
+                                    <input type="checkbox" name="selid[]" value="{$item.id}">
+                                </td>
+                                <td>{$item.title}</td>
+                                <td>{$item.name}</td>
+                                <td class="text-center">{:$item['is_top']?'
+                                    <i class="icon-check"></i>
+                                    ':'
+                                    <i class="icon-times"></i>
+                                    '}
+                                </td>
+                                <td class="text-center">
+                                    <a type="button" class="btn btn-sm btn-success" href="{:U('edit',array('node_id'=>$item['node_id']))}">
+                                        <i class="icon-edit"></i>
+                                        编辑
+                                    </a>
+                                    <a type="button" class="btn btn-sm btn-danger ajax-get" href="{:U('del',array('node_id'=>$item['node_id']))}">
+                                        <i class="icon-trash"></i>
+                                        删除
+                                    </a>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th colspan="8">
+                                <button type="button" class="btn btn-danger" onclick="confirmDel(prefun,delsel)">
+                                    <i class="icon-trash"></i>
+                                    删除
+                                </button>
+                                <div class="pull-right">
+                                    {$page}
+                                </div>
+                            </th>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

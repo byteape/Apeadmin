@@ -1,0 +1,59 @@
+<script src="__ROOT__{:$vars['validatejsUrl']}"></script>
+<script>
+    $().ready(function () {
+        $('#{:$vars['formId']}').validate({
+            //debug: true,
+            rules: {:json_encode($vars['rules'])},
+            messages: {:json_encode($vars['messages'])},
+            showErrors: function (errorMap, errorList) {
+                var msg = "";
+                $.each(errorList, function (i, v) {
+                    $(v.element).tooltip('show',v.message/*{
+                        placement: 'top',
+                        tipClass: 'tooltip-warning',
+                        title: v.message
+                    }*/);
+                    return false;
+                });
+            },
+            onkeyup: false,
+            onfocusout: false, /* 失去焦点时不验证 */
+            submitHandler: function () {
+                $('#{:$vars['formId']}').find("input[type='submit']").attr('autocomplete','off').prop('disabled',true);
+                var loading=new $.zui.Messager('<i class="icon icon-spin icon-spinner-snake"></i>正在处理中……', {
+                    placement: 'center',
+                    time:0,
+                    close: false
+                });
+                loading.show();
+                $.ajax({
+                    type: "post",
+                    url : "{:U($vars['ajaxAction'])}",
+                    dataType:'json',
+                    data:$('#{:$vars['formId']}').serialize(),
+                    success: function(data){
+                        loading.destroy();
+                        if(data['status']>0){
+                            new $.zui.Messager(data['info'], {
+                                icon: 'check',
+                                type: 'success',
+                                time:1000,
+                                close: false
+                            }).show();
+                            {:$vars['successJs']}
+                        }else{
+                            new $.zui.Messager(data['info'], {
+                                icon: 'warning-sign',
+                                type: 'warning',
+                                time: 1000,
+                                close: false
+                            }).show();
+                            {:$vars['errorJs']}
+                        }
+                        $('#{:$vars['formId']}').find("input[type='submit']").attr('autocomplete','off').prop('disabled',false);
+                    }
+                });
+            }
+        });
+    });
+</script>

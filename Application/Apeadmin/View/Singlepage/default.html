@@ -1,0 +1,28 @@
+<extend name="Public/common"/>
+<block name="body">
+    <div class="main-content">
+        <div class="wrapper">
+            <div class="panel">
+                <div class="panel-body">
+                    <form class="form-horizontal post_form" action="" method="post">
+                        <div class="form-group">
+                            <label class="col-sm-1">详情内容</label>
+                            <div class="col-sm-11">
+                                <include file="Public/kindeditor" id="detail" value="{$model['detail']}" thumbw="" thumbh=""/>
+                            </div>
+                        </div>
+
+                        {:W('Admin/seoMeta',array('model'=>$model))}
+
+                        <div class="form-group">
+                            <label class="col-sm-1">
+                                <button type="submit" class="btn btn-primary ajax-post" target-form="post_form">提交</button>
+                            </label>
+                        </div>
+                        <input type="hidden" name="id" value="{$model.id}"/>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</block>

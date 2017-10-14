@@ -1,0 +1,18 @@
+<textarea id="[id]" name="[id]" class="form-control kindeditor" style="height:[height];width:100%;">[value]</textarea>
+<!--编辑器Kineditor-->
+<script src="__LIB__/kindeditor/kindeditor.min.js"></script>
+<script>
+    var editor;
+    KindEditor.ready(function(K) {
+        editor = K.create('textarea[name="[id]"]', {
+            basePath: '__LIB__/kindeditor/',
+            bodyClass: 'article-content',
+            uploadJson : "{:U('Upload/kingeditorupload')}?thumbw=[thumbw]&thumbh=[thumbh]",
+            allowFileManager : false,
+            afterBlur:function(){this.sync();},
+			pasteType : 1,
+            filterMode:false,
+			newlineTag :'p'
+        });
+    });
+</script>
