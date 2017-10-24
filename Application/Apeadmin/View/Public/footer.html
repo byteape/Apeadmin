@@ -5,6 +5,12 @@
 <!--模态对话框-->
 <link href="__LIB__/bootbox/bootbox.min.css" rel="stylesheet">
 <script src="__LIB__/bootbox/bootbox.min.js"></script>
+
+<!--时间区间-->
+<link href="__LIB__/daterangepicker/daterangepicker-bs3.css" rel="stylesheet">
+<script src="__LIB__/daterangepicker/moment.min.js"></script>
+<script src="__LIB__/daterangepicker/daterangepicker.js"></script>
+
 <!--表单处理-->
 <script src="__JS__/common.js"></script>
 <script src="__JS__/submit.js"></script>
@@ -30,12 +36,31 @@
         showMeridian: 1,
         format: "yyyy-mm-dd hh:ii"
     });
-
-
-
-
 </script>
-
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.reservationtime').daterangepicker({
+            timePicker: true,
+            timePickerIncrement: 30,
+            format: 'YY-MM-DD HH:mm:ss',
+            timePicker12Hour: false,
+            locale: {
+                applyLabel: '确定',
+                cancelLabel: '取消',
+                fromLabel: '起始时间',
+                toLabel: '结束时间',
+                customRangeLabel: '自定义',
+                daysOfWeek: [ '日', '一', '二', '三', '四', '五', '六' ],
+                monthNames: [ '一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月' ],
+                firstDay: 1
+            }
+        },
+        function (start, end, label) {
+            console.log(start.toISOString(), end.toISOString(), label);
+        });
+    });
+</script>
 <!--样式覆盖-->
 <style>
     .chosen-container-single .chosen-single {

@@ -43,20 +43,7 @@ class Page {
         $this->totalRows = $totalRows; //设置总记录数
         $this->listRows = $listRows; //设置每页显示行数
         $parameter = empty($parameter) ? $_GET : $parameter;
-        //防止后台多值中空值的传递带来错误
-        $newparameter = array();
-        foreach ($parameter as $k => $v) {
-            if (is_array($v)) {
-                foreach ($v as $m => $n) {
-                    if ($n) {
-                        $newparameter[$k . '[]'] = $n;
-                    }
-                }
-            } else {
-                $newparameter[$k] = $v;
-            }
-        }
-        $this->parameter = $newparameter;
+        $this->parameter = $parameter;
         $this->nowPage = empty($_GET[$this->p]) ? 1 : intval($_GET[$this->p]);
         $this->nowPage = $this->nowPage > 0 ? $this->nowPage : 1;
         $this->firstRow = $this->listRows * ($this->nowPage - 1);

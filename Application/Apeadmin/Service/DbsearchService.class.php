@@ -1,5 +1,5 @@
 <?php
-namespace Apeadmin\Service;
+namespace Fwadmin\Service;
 
 class DbsearchService {
     /**
@@ -9,16 +9,17 @@ class DbsearchService {
         $condition = array();
         foreach ($conditions as $k => $v) {
             if (in_array($k, $dataFields) && $v != '') {
-                if (strtolower($searchFields[$k]) == 'between' && count($v) == 2) {
-                    foreach ($v as $m => $n) {
-                        $v[$m] = strtotime($n) ? strtotime($n) : 0;
+                if (strtolower($searchFields[$k]) == 'between' && strstr($v, '-') != false) {
+                    $arr=explode(' - ',$v);
+                    foreach ($arr as $m => $n) {
+                        $arr[$m] = strtotime($n) ? strtotime($n) : 0;
                     }
-                    if ($v[0] && $v[1]) {
-                        $condition[$k] = array($searchFields[$k], is_array($v) ? implode(',', $v) : $v);
-                    } elseif ($v[0] && !$v[1]) {
-                        $condition[$k] = array('egt', $v[0]);
-                    } elseif (!$v[0] && $v[1]) {
-                        $condition[$k] = array('elt', $v[1]);
+                    if ($arr[0] && $arr[1]) {
+                        $condition[$k] = array($searchFields[$k], is_array($arr) ? implode(',', $arr) : $arr);
+                    } elseif ($arr[0] && !$arr[1]) {
+                        $condition[$k] = array('egt', $arr[0]);
+                    } elseif (!$arr[0] && $arr[1]) {
+                        $condition[$k] = array('elt', $arr[1]);
                     }
                 } elseif (in_array(strtolower($searchFields[$k]), array('like', 'notlike'))) {
                     $condition[$k] = array($searchFields[$k], '%' . $v . '%');

@@ -7,8 +7,7 @@
                     <form action="{:U('index')}" method="get">
                         <div class="search">
                             <input type="text" name="detail" class="form-control text" placeholder="留言内容" value="{$conditions.detail}" style="width:150px;">
-                            <input type="text" name="create_time[]" class="form-control text form-datetime" placeholder="开始时间" value="{$conditions['create_time'][0]}" style="width:115px;" readonly="readonly">
-                            <input type="text" name="create_time[]" class="form-control text form-datetime" placeholder="结束时间" value="{$conditions['create_time'][1]}" style="width:115px;" readonly="readonly">
+                            <input type="text" name="create_time" class="form-control text reservationtime" placeholder="选择时间" value="{$conditions['create_time']}" style="width:233px;" readonly="readonly">
                             <button type="submit" class="btn btn-primary-outline">
                                 <i class="icon-search"></i>
                                 &nbsp;查询
